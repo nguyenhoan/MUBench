@@ -333,3 +333,11 @@ a.disabled {
     z-index:1;
     padding:5px;
 }
+
+.row-hover:hover {
+    background-color: #f1f1f1;
+}
+
+.row-hover:hover td {
+    background-color: #f1f1f1;
+}
