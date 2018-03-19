@@ -92,7 +92,7 @@ class PublishFindingsTask:
         data = self._to_markdown_dict(run_info)
         data["result"] = result
         data["potential_hits"] = postable_potential_hits
-        data["timestamp"] = self.run_timestamp
+        data["timestamp"] = run_info["timestamp"]
 
         return data
 
