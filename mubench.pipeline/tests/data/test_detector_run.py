@@ -183,3 +183,13 @@ class TestDetectorRun:
         uut = DetectorRun(self.detector, self.version, self.findings_path)
 
         assert uut._newer_compile(compile_timestamp)
+
+    @patch("data.detector_run.DetectorRun._load_findings")
+    @patch("data.detector_run.open_yamls_if_exists")
+    def test_get_run_info_without_previous_load(self, read_yamls_mock, load_findings_mock, _):
+        read_yamls_mock.return_value = {}
+        load_findings_mock.return_value = []
+
+        uut = DetectorRun(self.detector, self.version, self.findings_path)
+
+        run_info = uut.get_run_info()
