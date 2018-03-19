@@ -47,8 +47,7 @@ class TestPublishFindingsTask:
 
         self.test_potential_hits = PotentialHits([])
 
-        self.uut = PublishFindingsTask(self.experiment_id, "/sources", self.test_run_timestamp,
-                                       "http://dummy.url", "-username-", "-password-")
+        self.uut = PublishFindingsTask(self.experiment_id, "/sources", "http://dummy.url", "-username-", "-password-")
 
     def test_post_url(self, post_mock):
         self.uut.run(self.project, self.version, self.test_detector_execution, self.test_potential_hits,
