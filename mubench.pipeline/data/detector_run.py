@@ -29,14 +29,18 @@ class DetectorRun:
         self.findings_path = findings_path
         self.__FINDINGS = None
         self.__POTENTIAL_HITS = None
-        self.__run_info = None
+        self.__RUN_INFO = None
         self._findings_file_path = join(findings_path, DetectorRun.__FINDINGS_FILE)
         self._run_file_path = join(findings_path, DetectorRun.__RUN_FILE)
 
     def __get_run_info(self, key: str, default):
-        if not self.__run_info:
-            self.__run_info = self.__load_run_info()
         return self.__run_info.get(key, default)
+
+    @property
+    def __run_info(self):
+        if not self.__RUN_INFO:
+            self.__RUN_INFO = self.__load_run_info()
+        return self.__RUN_INFO
 
     def __load_run_info(self):
         return read_yaml_if_exists(self._run_file_path)
@@ -134,7 +138,7 @@ class DetectorRun:
             "md5": detector_md5
         })
         write_yaml(run_info, file=self._run_file_path)
-        self.__run_info = run_info
+        self.__RUN_INFO = run_info
 
     @property
     def findings(self) -> List[Finding]:
