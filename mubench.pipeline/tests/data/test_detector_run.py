@@ -193,3 +193,5 @@ class TestDetectorRun:
         uut = DetectorRun(self.detector, self.version, self.findings_path)
 
         run_info = uut.get_run_info()
+
+        assert_equals({"number_of_findings": 0, "runtime": 0}, run_info)
