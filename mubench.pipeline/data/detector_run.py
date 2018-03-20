@@ -66,7 +66,6 @@ class DetectorRun:
         run_info = {
             "number_of_findings": self.number_of_findings,
             "runtime": self.runtime,
-            "timestamp": self.__timestamp
         }
         run_info.update(self.__run_info)
         return run_info
