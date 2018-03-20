@@ -33,9 +33,6 @@ class DetectorRun:
         self._findings_file_path = join(findings_path, DetectorRun.__FINDINGS_FILE)
         self._run_file_path = join(findings_path, DetectorRun.__RUN_FILE)
 
-    def __get_run_info(self, key: str, default):
-        return self.__run_info.get(key, default)
-
     @property
     def __run_info(self):
         if not self.__RUN_INFO:
@@ -47,24 +44,24 @@ class DetectorRun:
 
     @property
     def result(self):
-        result = self.__get_run_info("result", None)
+        result = self.__run_info.get("result", None)
         return Result[result] if result else None
 
     @property
     def runtime(self):
-        return self.__get_run_info("runtime", 0)
+        return self.__run_info.get("runtime", 0)
 
     @property
     def message(self):
-        return self.__get_run_info("message", "")
+        return self.__run_info.get("message", "")
 
     @property
     def __detector_md5(self):
-        return self.__get_run_info("md5", None)
+        return self.__run_info.get("md5", None)
 
     @property
     def __timestamp(self):
-        return self.__get_run_info("timestamp", 0)
+        return self.__run_info.get("timestamp", 0)
 
     def get_run_info(self):
         run_info = {
