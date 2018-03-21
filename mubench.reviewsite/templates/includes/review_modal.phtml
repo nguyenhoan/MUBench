@@ -36,7 +36,7 @@ use MuBench\ReviewSite\Models\Misuse;
                 <table class="invisible">
                     <tr>
                         <td><b>Reviewer:</b></td>
-                            <td><?= htmlspecialchars($review->reviewer->name) ?></td>
+                            <td><?= htmlspecialchars($blind_mode ? "reviewer-{$review->reviewer->id}": $review->reviewer->name) ?></td>
                     </tr>
                     <tr style="padding-top:0;margin-top:0;">
                         <td><b>Decision:</b></td>
