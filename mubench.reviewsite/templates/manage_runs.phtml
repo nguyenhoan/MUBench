@@ -6,6 +6,7 @@
  * @var string $public_url_prefix
  * @var string $private_url_prefix
  * @var callable $pathFor function to resolve router paths
+ * @var callable $detectorName function to resolve router paths
  * @var string $url_prefix the public or private url prefix, depending on whether the user is logged in
  *
  * @var string $path the current route path
@@ -85,7 +86,7 @@ $columns_to_ignore = array(
         ?>
             <tr>
                 <td class="top">
-                    <?= $first_detector ? $markdown_parser->text($detector) : ""; ?></td>
+                    <?= $first_detector ? $markdown_parser->text($detectorName($detector)) : ""; ?></td>
                 <td class="top">
                     <?= $markdown_parser->text($project); ?></td>
                 <td class="top">
@@ -100,7 +101,7 @@ $columns_to_ignore = array(
                     <?php include "includes/stats_modal.phtml"; ?>
                 </td>
                 <td>
-                    <form action="<?= $pathFor('runs.delete', array('experiment_id' => $experiment->id, 'detector_muid' => $detector, 'project_muid' => $project, 'version_muid' => $version)) ?>" method="post" target="">
+                    <form action="<?= $pathFor('runs.delete', array('experiment_id' => $experiment->id, 'detector_muid' => $detectorName($detector), 'project_muid' => $project, 'version_muid' => $version)) ?>" method="post" target="">
                         <button style="border:none;background-color:gray;outline:none;margin:0;padding:0" type="submit"><i class="fa fa-window-close"></i></button>
                     </form>
                 </td>
